@@ -1,18 +1,36 @@
-# README for a newly created project.
+# Esprimatricks
 
-There are a couple of things you should do first, before you can use all of Git's power:
+This project aims to improve work with a javascript ast. It uses the Mozilla parser api, which is supported by the esprima parser. While it doesn't parse javascript code, it improves that ast by objectifying it. 
+Objectifying the ast makes the following things possible now:
 
-  * Add a remote to this project: in the Cloud9 IDE command line, you can execute the following commands
-    `git remote add [remote name] [remote url (eg. 'git@github.com:/ajaxorg/node_chat')]` [Enter]
-  * Create new files inside your project
-  * Add them to to Git by executing the following command
-    `git add [file1, file2, file3, ...]` [Enter]
-  * Create a commit which can be pushed to the remote you just added
-    `git commit -m 'added new files'` [Enter]
-  * Push the commit the remote
-    `git push [remote name] master` [Enter]
+ * Get the parent
+ * Get the scope
+ * Get an array of all children objects
+ * Get an array of all descendants objects
+ * Allow the execution of a selector based selection
+ * Allow transversal based on walking
+ * returning it back to the Mozilla parser api (a toJSON method is provided)
 
-That's it! If this doesn't work for you, please visit the excellent resources from [Github.com](http://help.github.com) and the [Pro Git](http://http://progit.org/book/) book.
-If you can't find your answers there, feel free to ask us via Twitter (@cloud9ide), [mailing list](groups.google.com/group/cloud9-ide) or IRC (#cloud9ide on freenode).
 
-Happy coding!
+## Future Aspirations
+
+ * Make it enviroment undependant by using a build script(minimum support should be ES5)
+ * TODO
+
+## Tests
+
+For the moment I test all things 1 after the other after I create them by executing tests/index.js in node.js.
+
+## Docs
+
+There aren't any :(.
+
+## Status Project 
+
+The project is more a proof of concept for now then a useable project.
+What is needed shortly??
+    
+ * All nodeTypes should be added. 
+ * the '.has(...)' selectorType should be added.
+ * '.isboolean','.isString',... selectorTypes should be added.
+ * The scope Object should do something usefull
