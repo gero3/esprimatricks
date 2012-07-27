@@ -553,7 +553,7 @@ data = {
             }
         },
 
-        'æ—¥æœ¬èªž = []': {
+        '日本語 = []': {
             type: 'ExpressionStatement',
             expression: {
                 type: 'AssignmentExpression',

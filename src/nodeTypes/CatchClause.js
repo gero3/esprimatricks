@@ -6,19 +6,19 @@ var CatchClause  = function(ast,parent){
     astNode.call(this,ast,parent);
     this.type = "CatchClause";
     this.scope = new scope(this);
-    
-    this.params = astNode.objectifyProperty(ast.params,this);
+    this.guard = ast.guard;
+    this.param = astNode.objectifyProperty(ast.param,this);
     this.body = astNode.objectifyProperty(ast.body,this);
 };
 
 CatchClause.prototype  = inherits(astNode);
 
 CatchClause.prototype.getChildProperties = function(){
-    return ["params","body"];
+    return ["param","body"];
 };
 
-CatchClause.prototype.getParams = function(){
-    return this.params;
+CatchClause.prototype.getParam = function(){
+    return this.param;
 };
 
 CatchClause.prototype.getBody = function(){
@@ -30,5 +30,14 @@ CatchClause.prototype.getScope =function(){
     return this.scope;
 };
 
+
+var _toJSON = astNode.prototype.toJSON;
+CatchClause.prototype.toJSON = function(){
+    var returnValue = _toJSON.call(this);
+    returnValue.guard = this.guard;
+    return returnValue;
+};
+
+try { } catch (e) { }
 
 module.exports = CatchClause;

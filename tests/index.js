@@ -4,13 +4,14 @@ var esprima = require("esprima");
 var data = require("./testdata");
 
 
-var more = esprima.parse("var a = function(){ with(a){b = 2;b= true;return !(event instanceof KeyboardEvent);}};a()");
+var more = esprima.parse("try { } catch (e) { }");
 var objectified = astNode.objectify(more);
-var exceptions = ["range","loc","tokens","raw"];
+//var exceptions = ["range","loc","tokens","raw"];
 
 test(data);
+console.log(JSON.stringify(more));
+console.log(JSON.stringify(objectified.toJSON()));
 console.log(isTheSameAst(more,objectified.toJSON()));
-console.log(JSON.stringify(objectified.querySelectorAll("::body::ExpressionStatement , Identifier")));
 
 
 function test(data){
@@ -27,7 +28,7 @@ function test(data){
                 continue;    
             }
             var result = astNode.objectify(parsed).toJSON();
-            if (!isTheSameAst(/*data[i][j]*/parsed,result, exceptions)){
+            if (!isTheSameAst(/*data[i][j]*/parsed,result)){
                 console.log(j + " failed.");    
             }
         }

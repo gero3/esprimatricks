@@ -24,7 +24,6 @@ AssignmentExpression.prototype.getRight = function(){
     return this.right;
 };
 
-
 var _toJSON = astNode.prototype.toJSON;
 AssignmentExpression.prototype.toJSON = function(){
     var returnValue = _toJSON.call(this);

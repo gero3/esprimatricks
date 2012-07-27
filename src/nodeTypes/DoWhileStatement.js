@@ -12,7 +12,7 @@ var DoWhileStatement = function(ast,parent){
 DoWhileStatement.prototype  = inherits(astNode);
 
 DoWhileStatement.prototype.getChildProperties = function(){
-    return ["body"];
+    return ["test","body"];
 };
 DoWhileStatement.prototype.getBody = function(){
     return this.body;
