@@ -30,4 +30,13 @@ Literal.prototype.isBoolean = function(){
     return typeof(this.value) === "boolean";
 };
 
+
+var _toJSON = astNode.prototype.toJSON;
+Literal.prototype.toJSON = function(){
+    var returnValue = _toJSON.call(this);
+    returnValue.value = this.value;
+    return returnValue;
+};
+
+
 module.exports = Literal;

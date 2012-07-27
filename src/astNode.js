@@ -93,7 +93,11 @@ astNode.prototype.toJSON = function(){
 			var arrProps = this[props[i]];
 			returnValue[props[i]] = [];
 			for(var j=0;j<arrProps.length;j++){
-				returnValue[props[i]].push(arrProps[j].toJSON());
+                if (arrProps[j] !== null){
+				    returnValue[props[i]].push(arrProps[j].toJSON());
+                } else {
+                    returnValue[props[i]].push(null);
+                };
 			}
 		} else {
 			if (this[props[i]] !== null){
@@ -111,10 +115,14 @@ function objectifyProperty(prop,parent){
     if (Array.isArray(prop)){
         returnValue = [];
         for (var i = 0;i<prop.length;i++){
-            returnValue.push(astNode.objectify(prop[i],parent));
+            if (prop[i] != null){
+                returnValue.push(astNode.objectify(prop[i],parent));
+            } else {
+                returnValue.push(null);
+            };
         }
     } else {
-        if (prop !== null){
+        if (prop != null){
             returnValue = astNode.objectify(prop,parent);
         } else {
             returnValue = null;
