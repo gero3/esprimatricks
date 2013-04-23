@@ -1,18 +1,26 @@
 {
-  "name": "Esprimatricks",
+  "name": "gero3",
   "version": "0.0.1",
-  "author": "gero3",
-  "description": "Esprimatricks aims to improve work with a javascript ast",
-  "main": "./index.js",
+  "description": "Esprimatricks aims to improve work with a javascript ast.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "tests"
+  },
+  "dependencies": {
+    "esprima": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gero3/esprimatricks.git"
+    "url": "git://github.com/gero3/esprimatricks.git"
   },
   "keywords": [
     "ast"
   ],
-  "dependencies" : {
-    "esprima": *
-  },
-  "license": "MIT",
+  "author": "gero3",
+  "license": "MIT"
 }
