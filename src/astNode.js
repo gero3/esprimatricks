@@ -8,6 +8,8 @@ var astNode = function(ast,parent){
     this.nodeId = counter++;
     this.type = ast.type;
     this.parent = parent;
+    this.loc = ast.loc;
+    this.range = ast.range;
     
 };
 // mustoverride;
