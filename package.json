@@ -1,0 +1,18 @@
+{
+  "name": "Esprimatricks",
+  "version": "0.0.1",
+  "author": "gero3",
+  "description": "Esprimatricks aims to improve work with a javascript ast",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gero3/esprimatricks.git"
+  },
+  "keywords": [
+    "ast"
+  ],
+  "dependencies" : {
+    "esprima": *
+  },
+  "license": "MIT",
+}
