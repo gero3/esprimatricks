@@ -1,9 +1,11 @@
 var selector = require("./selector").selector; 
 var scope = require("./scope").scope;
 
+var counter = 0;
+
 var astNode = function(ast,parent){
 
-    
+    this.nodeId = counter++;
     this.type = ast.type;
     this.parent = parent;
     
@@ -66,7 +68,7 @@ astNode.prototype.getDescendants = function(fn){
     function addChild(node){
         returnValue.push(node);
         node.applyToChildren(addChild);
-    };
+    }
     this.applyToChildren(addChild);
     return returnValue;
 };
@@ -74,7 +76,6 @@ astNode.prototype.getDescendants = function(fn){
 astNode.prototype.getParent = function(){
     return this.parent;
 };
-
 
 astNode.prototype.getScope = function(){
     if (this.parent){
@@ -94,10 +95,10 @@ astNode.prototype.toJSON = function(){
 			returnValue[props[i]] = [];
 			for(var j=0;j<arrProps.length;j++){
                 if (arrProps[j] !== null){
-				    returnValue[props[i]].push(arrProps[j].toJSON());
+                    returnValue[props[i]].push(arrProps[j].toJSON());
                 } else {
                     returnValue[props[i]].push(null);
-                };
+                }
 			}
 		} else {
 			if (this[props[i]] !== null){
@@ -145,6 +146,18 @@ astNode.objectify = function(ast,parent){
     return new nodeType(ast,parent);    
 };
 
+astNode.getNodeTypeChildProperties = function(){
+    var list = {};
+    
+    for(var i in astNode.nodeTypes){
+        if (astNode.nodeTypes.hasOwnProperty(i)){
+            list[i] = astNode.nodeTypes[i].prototype.getChildProperties();
+        }
+    }
+    
+    return list;
+    
+};
 
 
 

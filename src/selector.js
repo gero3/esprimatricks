@@ -12,6 +12,9 @@ var selector = function(node,selection){
     if (parts.length >= 1 && isType.exec(parts[0].match)){
         returnValue = selectTypeRecursively(node, parts[0].match);
         parts.shift();
+    } else if (parts.length >= 1 && parts[0].match ==="#this#"){
+        returnValue  = [node];
+        parts.shift();
     } else {
         returnValue = node.getDescendants();
         returnValue.unshift(node);
@@ -76,10 +79,11 @@ selector.chunk = function(selection){
 
 
 var find = function(nodes,parts){
-    var returnValue = nodes;
+    var returnValue = nodes,returnValueIndices;
     parts.forEach(function(part){
         var tests = returnValue;
         returnValue = [];
+        returnValueIndices = {};
         tests.forEach(function(node){
             var test = part.find(node,part.match);
             if (!test){
@@ -91,7 +95,8 @@ var find = function(nodes,parts){
             }
             
             test.forEach(function(node){
-                if (returnValue.indexOf(node) === -1){
+                if (!returnValueIndices[node.nodeId]){
+                    returnValueIndices[node.nodeId] = true;
                     returnValue.push(node);
                 }
             });
@@ -124,5 +129,6 @@ selector.addType(require("./selectorTypes/Children"));
 selector.addType(require("./selectorTypes/Descendants"));
 selector.addType(require("./selectorTypes/propertyNode"));
 selector.addType(require("./selectorTypes/parent"));
+selector.addType(require("./selectorTypes/this"));
 
 selector.addType(require("./selectorTypes/continuation"));

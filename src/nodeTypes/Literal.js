@@ -30,6 +30,9 @@ Literal.prototype.isBoolean = function(){
     return typeof(this.value) === "boolean";
 };
 
+Literal.prototype.isRegExp= function(){
+    return this.value instanceof RegExp;
+};
 
 var _toJSON = astNode.prototype.toJSON;
 Literal.prototype.toJSON = function(){

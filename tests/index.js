@@ -7,10 +7,10 @@ var data = require("./testdata");
 var more = esprima.parse("try { } catch (e) { }");
 var objectified = astNode.objectify(more);
 //var exceptions = ["range","loc","tokens","raw"];
-
+console.log(astNode.getNodeTypeChildProperties());
 test(data);
 console.log(JSON.stringify(more));
-console.log(JSON.stringify(objectified.toJSON()));
+console.log(JSON.stringify(objectified));
 console.log(isTheSameAst(more,objectified.toJSON()));
 
 
@@ -29,8 +29,8 @@ function test(data){
             }
             var result = astNode.objectify(parsed).toJSON();
             if (!isTheSameAst(/*data[i][j]*/parsed,result)){
-                console.log(j + " failed.");    
-            }
+                console.log(j + " failed.");
+            } 
         }
     }
     
