@@ -89,7 +89,11 @@ astNode.prototype.getScope = function(){
 
 astNode.prototype.toJSON = function(){
 	var returnValue = {};
+    
     returnValue.type = this.type;
+    returnValue.loc = this.loc;
+    returnValue.range = this.range;
+    
 	var props = this.getChildProperties();
     for(var i=0;i<props.length;i++){
 		if (Array.isArray(this[props[i]])){
